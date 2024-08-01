@@ -41,6 +41,8 @@ class Xmlto < Formula
     ENV["GETOPT"] = Formula["gnu-getopt"].opt_bin/"getopt" if OS.mac?
     # Find our docbook catalog
     ENV["XML_CATALOG_FILES"] = "#{etc}/xml/catalog"
+    
+    ENV.append "CFLAGS", "-Wno-implicit-int"
 
     ENV.deparallelize
     system "autoreconf", "--force", "--install", "--verbose"

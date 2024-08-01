@@ -28,6 +28,8 @@ class CyrusSasl < Formula
   uses_from_macos "libxcrypt"
 
   def install
+    ENV.append "CFLAGS", "-Wno-incompatible-pointer-types"
+    ENV.append "CFLAGS", "-Wno-implicit-function-declaration"
     system "./configure",
       "--disable-macos-framework",
       "--disable-dependency-tracking",
