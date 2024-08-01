@@ -4,6 +4,7 @@ class Acl < Formula
   url "https://download.savannah.nongnu.org/releases/acl/acl-2.3.2.tar.gz"
   sha256 "5f2bdbad629707aa7d85c623f994aa8a1d2dec55a73de5205bac0bf6058a2f7c"
   license all_of: ["GPL-2.0-or-later", "LGPL-2.1-or-later"]
+  head "https://git.savannah.nongnu.org/git/acl.git", branch: "next"
 
   livecheck do
     url "https://download.savannah.nongnu.org/releases/acl/"
@@ -17,8 +18,12 @@ class Acl < Formula
 
   depends_on "attr" => :build
   depends_on :linux
+  depends_on 'autoconf'
+  depends_on 'gettext'
+  depends_on 'libtool'
 
   def install
+    system "./autogen.sh"
     system "./configure", *std_configure_args, "--disable-silent-rules"
     system "make", "install"
   end

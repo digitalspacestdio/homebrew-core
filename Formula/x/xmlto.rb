@@ -41,6 +41,8 @@ class Xmlto < Formula
     ENV["SED"] = "/usr/bin/sed"
     # Find our docbook catalog
     ENV["XML_CATALOG_FILES"] = "#{etc}/xml/catalog"
+    
+    ENV.append "CFLAGS", "-Wno-implicit-int"
 
     ENV.deparallelize
     system "./configure", "--disable-dependency-tracking", "--prefix=#{prefix}"

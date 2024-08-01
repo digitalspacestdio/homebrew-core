@@ -41,6 +41,7 @@ class Rtmpdump < Formula
 
   def install
     ENV.deparallelize
+    ENV.append "CFLAGS", "-Wno-incompatible-pointer-types"
 
     os = if OS.mac?
       "darwin"

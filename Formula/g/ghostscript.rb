@@ -73,12 +73,15 @@ class Ghostscript < Formula
     libs = %w[expat freetype jbig2dec jpeg lcms2mt libpng openjpeg tiff zlib]
     libs.each { |l| rm_r(buildpath/l) }
 
+    ENV.append "CFLAGS", "-Wno-incompatible-pointer-types"
+    ENV.append "CFLAGS", "-Wno-int-conversion"
+
     configure = build.head? ? "./autogen.sh" : "./configure"
     system configure, *std_configure_args,
                       "--disable-compile-inits",
                       "--disable-cups",
                       "--disable-gtk",
-                      "--with-system-libtiff",
+         #             "--with-system-libtiff",
                       "--without-x"
 
     # Install binaries and libraries
